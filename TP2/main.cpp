@@ -2,7 +2,6 @@
 #include "entierlong.h"
 #include "lit_ecrit.h"
 #include "operation.h"
-#include "utilitaire.h"
 using namespace std;
 
 int main(){
