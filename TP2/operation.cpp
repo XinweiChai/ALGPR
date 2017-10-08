@@ -2,22 +2,22 @@
 #include "utilitaire.h"
 
 EntierLong addSameSign(EntierLong x, EntierLong y){
-	for (int i=0;i<MAXCHIFFRES;i++){
+	for (int i=0;i<MAXCHIFFRES;++i){
 		x.Chiffres[i]+=y.Chiffres[i];
 		while (x.Chiffres[i]>=10){
 			x.Chiffres[i]-=10;
-			x.Chiffres[i+1]+=1;
+			++x.Chiffres[i+1];
 		}
 	}
 	return x;
 }
 
 EntierLong subSameSign(EntierLong x, EntierLong y){
-	for (int i=0;i<MAXCHIFFRES;i++){
+	for (int i=0;i<MAXCHIFFRES;++i){
         	x.Chiffres[i]-=y.Chiffres[i];
         	while (x.Chiffres[i]<0){
         		x.Chiffres[i]+=10;
-        		x.Chiffres[i+1]-=1;
+        		--x.Chiffres[i+1];
         	}
         }
         return x;
@@ -51,7 +51,7 @@ EntierLong fibonacci(int n){
     EntierLong x,y,temp;
     x=convert(0);
     y=convert(1);
-    for (int i=0;i<n-1;i++){
+    for (int i=0;i<n-1;++i){
         temp=add(x,y);
         x=y;
         y=temp;
@@ -69,7 +69,7 @@ int length(EntierLong x){
 EntierLong init(){
 	EntierLong x;
 	x.Negatif=false;
-	for (int i=0;i<MAXCHIFFRES;i++)
+	for (int i=0;i<MAXCHIFFRES;++i)
 		x.Chiffres[i]=0;
 	return x;
 }
@@ -79,9 +79,9 @@ EntierLong times(EntierLong x, EntierLong y){
 	sum=init();
 	if (length(x)+length(y)>MAXCHIFFRES-1)
 		return sum;
-	for (int i=0;i<=length(x);i++){
+	for (int i=0;i<=length(x);++i){
 		temp=init();
-		for (int j=0;j<=length(y);j++){
+		for (int j=0;j<=length(y);++j){
 			temp.Chiffres[i+j]+=x.Chiffres[i]*y.Chiffres[j];
 		}
 		sum=addSameSign(sum,temp);
