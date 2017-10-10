@@ -1,5 +1,7 @@
 #include <fstream>
 #include "tris_def.h"
+#include <ctime>
+
 using namespace std;
 
 fichAllumette readAllumette(string filename){
@@ -26,4 +28,14 @@ void writeAllumette(fichAllumette f){
 		myfile << f.vec->couleur << ' ' << f.vec->taille << endl;
 		++f.vec;
 	}
+}
+
+
+fichAllumette generationAleatoire(int nbAlumettes){
+	fichAllumette f={nbAlumettes,new VectAllumettes};
+	srand(time(NULL));
+	for (int i=0;i<nbAlumettes;++i){
+		f.vec[i]={rand()%6+1,rand()%20+1};
+	}
+	return f;
 }
