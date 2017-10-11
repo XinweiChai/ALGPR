@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1507737771 source:/home/chai/Desktop/ALGPR/TP4/main.cpp
+	<string>
+	"type_def.h"
+	"utilitaires.h"
+
+1507735308 /home/chai/Desktop/ALGPR/TP4/type_def.h
+	<string>
+
+1507737539 /home/chai/Desktop/ALGPR/TP4/utilitaires.h
+	<string>
+
+1507737664 source:/home/chai/Desktop/ALGPR/TP4/utilitaires.cpp
+	<fstream>
+	<iomanip>
+	<sstream>
+	"type_def.h"
+
