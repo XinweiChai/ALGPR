@@ -7,4 +7,4 @@ Basic computation and standard I/O
 Manipulation of longint
 
 ## TP3
-File I/O, Sorting, struct, library linker use run `g++ -std=c++11 *cpp -lncurses` in command line
+File I/O, Sorting, struct, library linker use run `g++ -std=c++11 *.cpp -lncurses` in command line
