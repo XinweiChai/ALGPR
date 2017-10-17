@@ -13,9 +13,10 @@ fichAllumette readAllumette(string filename){
 		myfile >> sz;
 		int index=0;
 		while (myfile >> couleur >> taille){
-			Allumette temp={stoi(couleur,nullptr),stoi(taille,nullptr)};
-			vec[index]=temp;
-			++index;
+//			Allumette temp={stoi(couleur,nullptr),stoi(taille,nullptr)};
+//			vec[index]=temp;
+			vec[index++]=(Allumette){stoi(couleur,nullptr),stoi(taille,nullptr)};
+//			++index;
 		}
 	fichAllumette f={sz,vec};
 	return f;

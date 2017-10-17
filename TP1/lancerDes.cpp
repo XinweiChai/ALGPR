@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+
 using namespace std;
 typedef int type[100];
 int main()

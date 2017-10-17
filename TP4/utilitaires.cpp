@@ -1,10 +1,13 @@
 #include <fstream>
 #include <iomanip>
 #include <sstream>
+#include <stdlib.h>
+#include <cstdio>
 #include "type_def.h"
 
 using namespace std;
 
+typedef char* ch;
 
 string* initTabNomPrenom(string fileName, int sizefile){
 	ifstream fn(fileName.c_str());
@@ -18,24 +21,26 @@ string* initTabNomPrenom(string fileName, int sizefile){
 
 personne genererPersonne(string* listNom, string* listPrenom, int nbNom, int nbPrenom){
 	srand(time(NULL));
-	ostringstream ss;
-	string res="";
-	ss << setw(2) << setfill('0')<<rand()%98+1;
-//	string sexe = to_string(rand()%2+1),
-//	       annee = to_string("%02d",rand()%98+1),
-//	       moisNaiss = to_string("%02d",rand()%12+1),
-//	       depart = to_string("%02d",rand()%98+1),
-//	       commune = to_string("03d",rand()%998+1),
-//	       etatCiv = to_string("03d",rand()%998+1);
+//	ostringstream ss;
+	ch sexe, annee, moisNaiss, depart, commune, etatCiv;
+	sprintf(sexe,"%02d",rand()%98+1);
+	string res=string(sexe);
+	
+//	ss << setw(2) << setfill('0')<<rand()%98+1;
+	sprintf(annee,"%02d",rand()%98+1),
+        sprintf(moisNaiss,"%02d",rand()%12+1),
+        sprintf(depart,"%02d",rand()%98+1),
+        sprintf(commune,"%03d",rand()%998+1),
+        sprintf(etatCiv,"%03d",rand()%998+1);
     string temp = listNom[rand()%nbNom];
-	personne per({listNom[rand()%nbNom],listPrenom[rand()%nbPrenom],ss.str()});
 
 //sexe+annee+moisNaiss+depart+commune+etatCiv
 //	if (annee<10){
-//		sannee="0"+to_string(annee);
+//		sannee="0"+sprintf(annee);
 //	}else{
-//		sannee=to_string(annee);
+//		sannee=sprintf(annee);
 //	}
+	personne per;
 	return per;
 }
 
