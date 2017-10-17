@@ -4,44 +4,33 @@
 #include <stdlib.h>
 #include <cstdio>
 #include "type_def.h"
-
+#include <iostream>
 using namespace std;
 
-typedef char* ch;
 
-string* initTabNomPrenom(string fileName, int sizefile){
+int initTabNomPrenom(string fileName, string* nom){
+	int sizefile(0);
 	ifstream fn(fileName.c_str());
 	fn >> sizefile;
-	string* nom = new string[sizefile];
 	for (int i=0;i<sizefile;++i){
         fn >> nom[i];
     }
-    return nom;
+    return sizefile;
 }
 
 personne genererPersonne(string* listNom, string* listPrenom, int nbNom, int nbPrenom){
 	srand(time(NULL));
-//	ostringstream ss;
-	ch sexe, annee, moisNaiss, depart, commune, etatCiv;
-	sprintf(sexe,"%02d",rand()%98+1);
-	string res=string(sexe);
-	
-//	ss << setw(2) << setfill('0')<<rand()%98+1;
-	sprintf(annee,"%02d",rand()%98+1),
-        sprintf(moisNaiss,"%02d",rand()%12+1),
-        sprintf(depart,"%02d",rand()%98+1),
-        sprintf(commune,"%03d",rand()%998+1),
-        sprintf(etatCiv,"%03d",rand()%998+1);
-    string temp = listNom[rand()%nbNom];
+	char sexe[1], annee[2], moisNaiss[2], depart[2], commune[3], etatCiv[3];
+	sprintf(sexe,"%d",rand()%2+1);
+	cout << sexe << endl;
+	sprintf(annee,"%02d",rand()%98+1);
+	sprintf(moisNaiss,"%02d",rand()%12+1);
+	sprintf(depart,"%02d",rand()%98+1);
+	sprintf(commune,"%03d",rand()%998+1);
+	sprintf(etatCiv,"%03d",rand()%998+1);
 
-//sexe+annee+moisNaiss+depart+commune+etatCiv
-//	if (annee<10){
-//		sannee="0"+sprintf(annee);
-//	}else{
-//		sannee=sprintf(annee);
-//	}
-	personne per;
-	return per;
+	return personne({listNom[rand()%nbNom],listPrenom[rand()%nbPrenom],
+	(string(sexe,1)+string(annee,2)+string(moisNaiss,3)+string(depart,2)+string(commune,3)+string(etatCiv,3))});
 }
 
 bool egalitePersonne(personne per1, personne per2){
