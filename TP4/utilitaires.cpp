@@ -22,15 +22,16 @@ personne genererPersonne(string* listNom, string* listPrenom, int nbNom, int nbP
 	srand(time(NULL));
 	char sexe[1], annee[2], moisNaiss[2], depart[2], commune[3], etatCiv[3];
 	sprintf(sexe,"%d",rand()%2+1);
-	cout << sexe << endl;
 	sprintf(annee,"%02d",rand()%98+1);
 	sprintf(moisNaiss,"%02d",rand()%12+1);
 	sprintf(depart,"%02d",rand()%98+1);
 	sprintf(commune,"%03d",rand()%998+1);
 	sprintf(etatCiv,"%03d",rand()%998+1);
-
-	return personne({listNom[rand()%nbNom],listPrenom[rand()%nbPrenom],
-	(string(sexe,1)+string(annee,2)+string(moisNaiss,3)+string(depart,2)+string(commune,3)+string(etatCiv,3))});
+	personne per({listNom[rand()%nbNom],listPrenom[rand()%nbPrenom], (string(sexe,1)+string(annee,2)+string(moisNaiss,3)+string(depart,2)+string(commune,3)+string(etatCiv,3))});
+	fstream f;
+	f.open("repertoire.txt",std::ios::in);
+	f << per.nom << " " << per.prenom << " " << per.nSec << endl;
+	return per;
 }
 
 bool egalitePersonne(personne per1, personne per2){

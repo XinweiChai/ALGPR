@@ -1,5 +1,4 @@
 #include <string>
-#include "type_def.h"
 #include "utilitaires.h"
 
 #include <iostream>
