@@ -1,6 +1,9 @@
 #include "proba.h"
 #include "fourmi.h"
 #include "constantes.h"
+#include <math.h>
+int tdx[]={1,1,0,-1,-1,-1,0,1},
+    tdy[]={0,1,1,1,0,-1,-1,-1};
 
 int modulo8(int x){
 	return ((x+8)%8);
@@ -12,19 +15,7 @@ bool PositionPossible(int x, int y, t_monde m){
 
 t_fourmi DeplaceFourmi(t_fourmi fourmi, t_monde m){
 	int comportement=nalea(8);
-//	switch (comportement){
-//		case 0 : --f.x;--f.y;
-//		case 1 : --f.y;
-//		case 2 : ++f.x;--f.y;
-//		case 3 : ++f.x;
-//		case 4 : ++f.x;++f.y;
-//		case 5 : ++f.y;
-//		case 6 : --f.x;++f.y;
-//		case 7 : --f.x;
-//	}
-	int tdx[]={1,1,0,-1,-1,-1,0,1}, 
-	    tdy[]={0,1,1,1,0,-1,-1,-1},
-	    p_toutdroit[]={12,2,1,1,0,1,1,2},
+	int p_toutdroit[]={12,2,1,1,0,1,1,2},
 	    ponderation[8];
 	int dir,i;
 	for (i=0;i<8;++i){
@@ -41,5 +32,26 @@ t_fourmi DeplaceFourmi(t_fourmi fourmi, t_monde m){
 	return fourmi;
 }
 
+int DirFourmililiere(int x, int y, int Fx, int Fy){
+	int resultat;
+	int dx= Fx-x;
+	int dy= Fy-y;
+	float norme = sqrt(dx*dx+dy*dy);
+	dx = (int)round(dx/norme);
+	dy = (int)round(dy/norme);
+	for (int i = 0; i<=7;++i){
+		if (dx == tdx[i] && dy == tdy[i]){
+			resultat=i;
+		}
+	}
+	return resultat;
+}
 
-
+t_monde EvaporationPheromone(t_monde m){
+	for (int i=0;i<m.L;++i)
+		for (int j=0;i<m.H;++j){
+			if (m[i][j])
+				--m[i][j];
+		}
+	return m;
+}
